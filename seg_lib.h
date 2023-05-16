@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 //ecrit un caractere au shiftreg
-void writeShiftReg(bool *num, int numseg );
+void writeShiftReg(bool *numb, int numseg );
 
 //cherche le caractere voulu et renvoie son adresse
 bool* fetchAdNum(int fetchcode, int numseg);

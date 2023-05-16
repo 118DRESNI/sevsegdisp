@@ -24,9 +24,10 @@ const bool an1[] = {0,0,1,0,0,1,1,0};
 const bool an2[] = {0,0,0,0,0,0,1,0};
 const bool an3[] = {0,1,0,0,1,0,1,0};
 
+bool num[] = {0,0,0,0,0,0,0,0};
 
 
-void writeShiftReg(bool *num, int numseg){
+void writeShiftReg(bool *numb, int numseg){
   pinMode(DS, OUTPUT);
   pinMode(STCP, OUTPUT);
   pinMode(SHCP, OUTPUT);
@@ -38,7 +39,7 @@ void writeShiftReg(bool *num, int numseg){
   for(char ctr = 0x00; ctr<= numseg-0x01; ctr++){
     digitalWrite(SHCP, LOW);
     delay(10);
-    digitalWrite(DS, num[ctr]);
+    digitalWrite(DS, numb[ctr]);
     digitalWrite(SHCP, HIGH);
     delay(10);
   }
@@ -48,7 +49,6 @@ void writeShiftReg(bool *num, int numseg){
 
 //cherche le caractere voulu et renvoie son adresse
 bool* fetchAdNum(int fetchcode, int numseg){
-  bool num[] = {0,0,0,0,0,0,0,0};
   switch(fetchcode){
     case 0:
      memcpy( num, zer, numseg );
@@ -90,33 +90,33 @@ return num;
 void selSeg(int segpos){
   switch(segpos){
     case 0:
-      digitalWrite(A, 0);
+      digitalWrite(A, 1);
       digitalWrite(B, 0);
       digitalWrite(C, 0);
     break;
     case 1:
-      digitalWrite(A, 1);
-      digitalWrite(B, 0);
+      digitalWrite(A, 0);
+      digitalWrite(B, 1);
       digitalWrite(C, 0);
     break;
     case 2:
-      digitalWrite(A, 0);
+      digitalWrite(A, 1);
       digitalWrite(B, 1);
       digitalWrite(C, 0);
     break;
     case 3:
-      digitalWrite(A, 1);
-      digitalWrite(B, 1);
-      digitalWrite(C, 0);
-    break;
-    case 4:
       digitalWrite(A, 0);
       digitalWrite(B, 0);
       digitalWrite(C, 1);
     break;
-    case 5:
+    case 4:
       digitalWrite(A, 1);
       digitalWrite(B, 0);
+      digitalWrite(C, 1);
+    break;
+    case 5:
+      digitalWrite(A, 0);
+      digitalWrite(B, 1);
       digitalWrite(C, 1);
     break;
     default:
